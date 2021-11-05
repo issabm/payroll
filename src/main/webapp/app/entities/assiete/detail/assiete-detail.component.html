@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="assiete">
+      <h2 data-cy="assieteDetailsHeading"><span>Assiete</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ assiete.id }}</span>
+        </dd>
+        <dt><span>Priorite</span></dt>
+        <dd>
+          <span>{{ assiete.priorite }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ assiete.code }}</span>
+        </dd>
+        <dt><span>Lib</span></dt>
+        <dd>
+          <span>{{ assiete.lib }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ assiete.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ assiete.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ assiete.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ assiete.createdBy }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ assiete.util }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ assiete.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ assiete.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ assiete.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ assiete.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/assiete', assiete.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

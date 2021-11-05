@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="SoldeAbsencePaieHeading">
+    <span>Solde Absence Paies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-solde-absence-paie"
+        [routerLink]="['/solde-absence-paie/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Solde Absence Paie </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="soldeAbsencePaies?.length === 0">
+    <span>No soldeAbsencePaies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="soldeAbsencePaies && soldeAbsencePaies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="annee"><span>Annee</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="mois"><span>Mois</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fullPayRight"><span>Full Pay Right</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="halfPayRight"><span>Half Pay Right</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fullPay"><span>Full Pay</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="halfPay"><span>Half Pay</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="payroll.id"><span>Payroll</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="natureAbsence.id"><span>Nature Absence</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let soldeAbsencePaie of soldeAbsencePaies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/solde-absence-paie', soldeAbsencePaie.id, 'view']">{{ soldeAbsencePaie.id }}</a>
+          </td>
+          <td>{{ soldeAbsencePaie.annee }}</td>
+          <td>{{ soldeAbsencePaie.mois }}</td>
+          <td>{{ soldeAbsencePaie.fullPayRight }}</td>
+          <td>{{ soldeAbsencePaie.halfPayRight }}</td>
+          <td>{{ soldeAbsencePaie.fullPay }}</td>
+          <td>{{ soldeAbsencePaie.halfPay }}</td>
+          <td>{{ soldeAbsencePaie.util }}</td>
+          <td>{{ soldeAbsencePaie.dateop | formatMediumDatetime }}</td>
+          <td>{{ soldeAbsencePaie.modifiedBy }}</td>
+          <td>{{ soldeAbsencePaie.op }}</td>
+          <td>{{ soldeAbsencePaie.isDeleted }}</td>
+          <td>{{ soldeAbsencePaie.createdDate | formatMediumDatetime }}</td>
+          <td>{{ soldeAbsencePaie.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="soldeAbsencePaie.payroll">
+              <a [routerLink]="['/payroll', soldeAbsencePaie.payroll?.id, 'view']">{{ soldeAbsencePaie.payroll?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="soldeAbsencePaie.natureAbsence">
+              <a [routerLink]="['/nature-absence', soldeAbsencePaie.natureAbsence?.id, 'view']">{{ soldeAbsencePaie.natureAbsence?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/solde-absence-paie', soldeAbsencePaie.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/solde-absence-paie', soldeAbsencePaie.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(soldeAbsencePaie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="soldeAbsencePaies && soldeAbsencePaies.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

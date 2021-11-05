@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="ManagementResourceProfileHeading">
+    <span>Management Resource Profiles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-management-resource-profile"
+        [routerLink]="['/management-resource-profile/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Management Resource Profile </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="managementResourceProfiles?.length === 0">
+    <span>No managementResourceProfiles found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="managementResourceProfiles && managementResourceProfiles.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="profile"><span>Profile</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdBy"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="ressourceManage.id"><span>Ressource Manage</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let managementResourceProfile of managementResourceProfiles; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/management-resource-profile', managementResourceProfile.id, 'view']">{{ managementResourceProfile.id }}</a>
+          </td>
+          <td>{{ managementResourceProfile.profile }}</td>
+          <td>{{ managementResourceProfile.dateop | formatMediumDatetime }}</td>
+          <td>{{ managementResourceProfile.modifiedBy }}</td>
+          <td>{{ managementResourceProfile.createdBy }}</td>
+          <td>{{ managementResourceProfile.op }}</td>
+          <td>{{ managementResourceProfile.util }}</td>
+          <td>{{ managementResourceProfile.isDeleted }}</td>
+          <td>{{ managementResourceProfile.createdDate | formatMediumDatetime }}</td>
+          <td>{{ managementResourceProfile.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="managementResourceProfile.ressourceManage">
+              <a [routerLink]="['/management-resource', managementResourceProfile.ressourceManage?.id, 'view']">{{
+                managementResourceProfile.ressourceManage?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/management-resource-profile', managementResourceProfile.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/management-resource-profile', managementResourceProfile.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(managementResourceProfile)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="managementResourceProfiles && managementResourceProfiles.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

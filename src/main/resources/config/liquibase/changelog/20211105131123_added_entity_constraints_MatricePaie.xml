@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity MatricePaie.
+    -->
+    <changeSet id="20211105131123-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="assiete_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__assiete_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_assiet"/>
+
+        <addForeignKeyConstraint baseColumnNames="echlon_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__echlon_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_echlon"/>
+
+        <addForeignKeyConstraint baseColumnNames="emploi_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__emploi_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_emploi"/>
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_category"/>
+
+        <addForeignKeyConstraint baseColumnNames="affilication_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__affilication_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rh_affiliation"/>
+
+        <addForeignKeyConstraint baseColumnNames="entreprise_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__entreprise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rh_entreprise"/>
+
+        <addForeignKeyConstraint baseColumnNames="groupe_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__groupe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rh_groupe"/>
+
+        <addForeignKeyConstraint baseColumnNames="sexe_id"
+                                 baseTableName="pr_matrice"
+                                 constraintName="fk_pr_matrice__sexe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_sexe"/>
+    </changeSet>
+</databaseChangeLog>

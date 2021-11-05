@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="PayrollInfoHeading">
+    <span>Payroll Infos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payroll-info"
+        [routerLink]="['/payroll-info/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Payroll Info </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="payrollInfos?.length === 0">
+    <span>No payrollInfos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="payrollInfos && payrollInfos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span>Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libAr"><span>Lib Ar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libEr"><span>Lib Er</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="calculVal"><span>Calcul Val</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="effectVal"><span>Effect Val</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="tauxAbs"><span>Taux Abs</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="finalVal"><span>Final Val</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="effectValDevise"><span>Effect Val Devise</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="tauxChange"><span>Taux Change</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateCalcul"><span>Date Calcul</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateEffect"><span>Date Effect</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="calculBy"><span>Calcul By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="effectBy"><span>Effect By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateSituation"><span>Date Situation</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdBy"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="payroll.id"><span>Payroll</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payrollInfo of payrollInfos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/payroll-info', payrollInfo.id, 'view']">{{ payrollInfo.id }}</a>
+          </td>
+          <td>{{ payrollInfo.util }}</td>
+          <td>{{ payrollInfo.code }}</td>
+          <td>{{ payrollInfo.libAr }}</td>
+          <td>{{ payrollInfo.libEr }}</td>
+          <td>{{ payrollInfo.calculVal }}</td>
+          <td>{{ payrollInfo.effectVal }}</td>
+          <td>{{ payrollInfo.tauxAbs }}</td>
+          <td>{{ payrollInfo.finalVal }}</td>
+          <td>{{ payrollInfo.effectValDevise }}</td>
+          <td>{{ payrollInfo.tauxChange }}</td>
+          <td>{{ payrollInfo.dateCalcul | formatMediumDate }}</td>
+          <td>{{ payrollInfo.dateEffect | formatMediumDate }}</td>
+          <td>{{ payrollInfo.calculBy }}</td>
+          <td>{{ payrollInfo.effectBy }}</td>
+          <td>{{ payrollInfo.dateSituation | formatMediumDate }}</td>
+          <td>{{ payrollInfo.dateop | formatMediumDatetime }}</td>
+          <td>{{ payrollInfo.modifiedBy }}</td>
+          <td>{{ payrollInfo.createdBy }}</td>
+          <td>{{ payrollInfo.op }}</td>
+          <td>{{ payrollInfo.isDeleted }}</td>
+          <td>{{ payrollInfo.createdDate | formatMediumDatetime }}</td>
+          <td>{{ payrollInfo.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="payrollInfo.payroll">
+              <a [routerLink]="['/payroll', payrollInfo.payroll?.id, 'view']">{{ payrollInfo.payroll?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payroll-info', payrollInfo.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payroll-info', payrollInfo.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(payrollInfo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="payrollInfos && payrollInfos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="rebriqueContrat">
+      <h2 data-cy="rebriqueContratDetailsHeading"><span>Rebrique Contrat</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.id }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.util }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.createdBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ rebriqueContrat.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Rebrqiue</span></dt>
+        <dd>
+          <div *ngIf="rebriqueContrat.rebrqiue">
+            <a [routerLink]="['/rebrique', rebriqueContrat.rebrqiue?.id, 'view']">{{ rebriqueContrat.rebrqiue?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Sous Type Contrat</span></dt>
+        <dd>
+          <div *ngIf="rebriqueContrat.sousTypeContrat">
+            <a [routerLink]="['/sous-type-contrat', rebriqueContrat.sousTypeContrat?.id, 'view']">{{
+              rebriqueContrat.sousTypeContrat?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Type Contrat</span></dt>
+        <dd>
+          <div *ngIf="rebriqueContrat.typeContrat">
+            <a [routerLink]="['/type-contrat', rebriqueContrat.typeContrat?.id, 'view']">{{ rebriqueContrat.typeContrat?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/rebrique-contrat', rebriqueContrat.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

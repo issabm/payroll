@@ -1,0 +1,181 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-rebrique-contrat-heading" data-cy="RebriqueContratCreateUpdateHeading">Create or edit a Rebrique Contrat</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_util">Util</label>
+          <input type="text" class="form-control" name="util" id="field_util" data-cy="util" formControlName="util" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateSituation">Date Situation</label>
+          <div class="input-group">
+            <input
+              id="field_dateSituation"
+              data-cy="dateSituation"
+              type="text"
+              class="form-control"
+              name="dateSituation"
+              ngbDatepicker
+              #dateSituationDp="ngbDatepicker"
+              formControlName="dateSituation"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateSituationDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateop">Dateop</label>
+          <div class="d-flex">
+            <input
+              id="field_dateop"
+              data-cy="dateop"
+              type="datetime-local"
+              class="form-control"
+              name="dateop"
+              formControlName="dateop"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_modifiedBy">Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="modifiedBy"
+            id="field_modifiedBy"
+            data-cy="modifiedBy"
+            formControlName="modifiedBy"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_op">Op</label>
+          <input type="text" class="form-control" name="op" id="field_op" data-cy="op" formControlName="op" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_modifiedDate">Modified Date</label>
+          <div class="d-flex">
+            <input
+              id="field_modifiedDate"
+              data-cy="modifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="modifiedDate"
+              formControlName="modifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_rebrqiue">Rebrqiue</label>
+          <select class="form-control" id="field_rebrqiue" data-cy="rebrqiue" name="rebrqiue" formControlName="rebrqiue">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="rebriqueOption.id === editForm.get('rebrqiue')!.value?.id ? editForm.get('rebrqiue')!.value : rebriqueOption"
+              *ngFor="let rebriqueOption of rebriquesSharedCollection; trackBy: trackRebriqueById"
+            >
+              {{ rebriqueOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_sousTypeContrat">Sous Type Contrat</label>
+          <select
+            class="form-control"
+            id="field_sousTypeContrat"
+            data-cy="sousTypeContrat"
+            name="sousTypeContrat"
+            formControlName="sousTypeContrat"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                sousTypeContratOption.id === editForm.get('sousTypeContrat')!.value?.id
+                  ? editForm.get('sousTypeContrat')!.value
+                  : sousTypeContratOption
+              "
+              *ngFor="let sousTypeContratOption of sousTypeContratsSharedCollection; trackBy: trackSousTypeContratById"
+            >
+              {{ sousTypeContratOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_typeContrat">Type Contrat</label>
+          <select class="form-control" id="field_typeContrat" data-cy="typeContrat" name="typeContrat" formControlName="typeContrat">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                typeContratOption.id === editForm.get('typeContrat')!.value?.id ? editForm.get('typeContrat')!.value : typeContratOption
+              "
+              *ngFor="let typeContratOption of typeContratsSharedCollection; trackBy: trackTypeContratById"
+            >
+              {{ typeContratOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

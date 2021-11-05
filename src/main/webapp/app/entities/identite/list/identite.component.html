@@ -1,0 +1,128 @@
+<div>
+  <h2 id="page-heading" data-cy="IdentiteHeading">
+    <span>Identites</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-identite"
+        [routerLink]="['/identite/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Identite </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="identites?.length === 0">
+    <span>No identites found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="identites && identites.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span>Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateIssued"><span>Date Issued</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="placeIssed"><span>Place Issed</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateVld"><span>Date Vld</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="employe.id"><span>Employe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="typeIdentite.id"><span>Type Identite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let identite of identites; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/identite', identite.id, 'view']">{{ identite.id }}</a>
+          </td>
+          <td>{{ identite.code }}</td>
+          <td>{{ identite.dateIssued | formatMediumDate }}</td>
+          <td>{{ identite.placeIssed }}</td>
+          <td>{{ identite.dateVld | formatMediumDate }}</td>
+          <td>{{ identite.util }}</td>
+          <td>{{ identite.dateop | formatMediumDatetime }}</td>
+          <td>{{ identite.modifiedBy }}</td>
+          <td>{{ identite.op }}</td>
+          <td>{{ identite.isDeleted }}</td>
+          <td>{{ identite.createdDate | formatMediumDatetime }}</td>
+          <td>{{ identite.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="identite.employe">
+              <a [routerLink]="['/employe', identite.employe?.id, 'view']">{{ identite.employe?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="identite.typeIdentite">
+              <a [routerLink]="['/type-identite', identite.typeIdentite?.id, 'view']">{{ identite.typeIdentite?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/identite', identite.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/identite', identite.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(identite)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="identites && identites.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

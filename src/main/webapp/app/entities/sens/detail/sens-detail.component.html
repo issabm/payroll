@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sens">
+      <h2 data-cy="sensDetailsHeading"><span>Sens</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ sens.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ sens.code }}</span>
+        </dd>
+        <dt><span>Lib Ar</span></dt>
+        <dd>
+          <span>{{ sens.libAr }}</span>
+        </dd>
+        <dt><span>Lib En</span></dt>
+        <dd>
+          <span>{{ sens.libEn }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ sens.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ sens.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ sens.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ sens.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ sens.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ sens.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ sens.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sens', sens.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

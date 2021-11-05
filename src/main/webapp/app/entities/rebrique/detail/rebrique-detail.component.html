@@ -1,0 +1,114 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="rebrique">
+      <h2 data-cy="rebriqueDetailsHeading"><span>Rebrique</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ rebrique.id }}</span>
+        </dd>
+        <dt><span>Priorite</span></dt>
+        <dd>
+          <span>{{ rebrique.priorite }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ rebrique.code }}</span>
+        </dd>
+        <dt><span>Lib Ar</span></dt>
+        <dd>
+          <span>{{ rebrique.libAr }}</span>
+        </dd>
+        <dt><span>Lib En</span></dt>
+        <dd>
+          <span>{{ rebrique.libEn }}</span>
+        </dd>
+        <dt><span>In Tax</span></dt>
+        <dd>
+          <span>{{ rebrique.inTax }}</span>
+        </dd>
+        <dt><span>In Social</span></dt>
+        <dd>
+          <span>{{ rebrique.inSocial }}</span>
+        </dd>
+        <dt><span>In Bp</span></dt>
+        <dd>
+          <span>{{ rebrique.inBp }}</span>
+        </dd>
+        <dt><span>Val</span></dt>
+        <dd>
+          <span>{{ rebrique.val }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ rebrique.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ rebrique.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ rebrique.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ rebrique.createdBy }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ rebrique.util }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ rebrique.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ rebrique.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ rebrique.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ rebrique.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Sens</span></dt>
+        <dd>
+          <div *ngIf="rebrique.sens">
+            <a [routerLink]="['/sens', rebrique.sens?.id, 'view']">{{ rebrique.sens?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Concerne</span></dt>
+        <dd>
+          <div *ngIf="rebrique.concerne">
+            <a [routerLink]="['/concerne', rebrique.concerne?.id, 'view']">{{ rebrique.concerne?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Frequence</span></dt>
+        <dd>
+          <div *ngIf="rebrique.frequence">
+            <a [routerLink]="['/frequence', rebrique.frequence?.id, 'view']">{{ rebrique.frequence?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/rebrique', rebrique.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="FormPaieLigneRebHeading">
+    <span>Form Paie Ligne Rebs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-form-paie-ligne-reb"
+        [routerLink]="['/form-paie-ligne-reb/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Form Paie Ligne Reb </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="formPaieLigneRebs?.length === 0">
+    <span>No formPaieLigneRebs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="formPaieLigneRebs && formPaieLigneRebs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="priorite"><span>Priorite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span>Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libEn"><span>Lib En</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libAr"><span>Lib Ar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="valOrigin"><span>Val Origin</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="valCalcul"><span>Val Calcul</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdBy"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="formPaieLigne.id"><span>Form Paie Ligne</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let formPaieLigneReb of formPaieLigneRebs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/form-paie-ligne-reb', formPaieLigneReb.id, 'view']">{{ formPaieLigneReb.id }}</a>
+          </td>
+          <td>{{ formPaieLigneReb.priorite }}</td>
+          <td>{{ formPaieLigneReb.code }}</td>
+          <td>{{ formPaieLigneReb.libEn }}</td>
+          <td>{{ formPaieLigneReb.libAr }}</td>
+          <td>{{ formPaieLigneReb.valOrigin }}</td>
+          <td>{{ formPaieLigneReb.valCalcul }}</td>
+          <td>{{ formPaieLigneReb.dateop | formatMediumDatetime }}</td>
+          <td>{{ formPaieLigneReb.modifiedBy }}</td>
+          <td>{{ formPaieLigneReb.createdBy }}</td>
+          <td>{{ formPaieLigneReb.op }}</td>
+          <td>{{ formPaieLigneReb.util }}</td>
+          <td>{{ formPaieLigneReb.isDeleted }}</td>
+          <td>{{ formPaieLigneReb.createdDate | formatMediumDatetime }}</td>
+          <td>{{ formPaieLigneReb.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="formPaieLigneReb.formPaieLigne">
+              <a [routerLink]="['/form-paie-ligne', formPaieLigneReb.formPaieLigne?.id, 'view']">{{
+                formPaieLigneReb.formPaieLigne?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/form-paie-ligne-reb', formPaieLigneReb.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/form-paie-ligne-reb', formPaieLigneReb.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(formPaieLigneReb)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="formPaieLigneRebs && formPaieLigneRebs.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

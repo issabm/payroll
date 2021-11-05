@@ -1,0 +1,172 @@
+<div>
+  <h2 id="page-heading" data-cy="MatricePaieHeading">
+    <span>Matrice Paies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-matrice-paie"
+        [routerLink]="['/matrice-paie/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Matrice Paie </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="matricePaies?.length === 0">
+    <span>No matricePaies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="matricePaies && matricePaies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span>Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libAr"><span>Lib Ar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libEn"><span>Lib En</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDisplay"><span>Is Display</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="anneeDebut"><span>Annee Debut</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="moisDebut"><span>Mois Debut</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="anneeFin"><span>Annee Fin</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="moisFin"><span>Mois Fin</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="assiete.id"><span>Assiete</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="echlon.id"><span>Echlon</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="emploi.id"><span>Emploi</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="category.id"><span>Category</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="affilication.id"><span>Affilication</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="entreprise.id"><span>Entreprise</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="groupe.id"><span>Groupe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="sexe.id"><span>Sexe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let matricePaie of matricePaies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/matrice-paie', matricePaie.id, 'view']">{{ matricePaie.id }}</a>
+          </td>
+          <td>{{ matricePaie.code }}</td>
+          <td>{{ matricePaie.libAr }}</td>
+          <td>{{ matricePaie.libEn }}</td>
+          <td>{{ matricePaie.isDisplay }}</td>
+          <td>{{ matricePaie.anneeDebut }}</td>
+          <td>{{ matricePaie.moisDebut }}</td>
+          <td>{{ matricePaie.anneeFin }}</td>
+          <td>{{ matricePaie.moisFin }}</td>
+          <td>{{ matricePaie.util }}</td>
+          <td>{{ matricePaie.dateop | formatMediumDatetime }}</td>
+          <td>{{ matricePaie.modifiedBy }}</td>
+          <td>{{ matricePaie.op }}</td>
+          <td>{{ matricePaie.isDeleted }}</td>
+          <td>{{ matricePaie.createdDate | formatMediumDatetime }}</td>
+          <td>{{ matricePaie.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="matricePaie.assiete">
+              <a [routerLink]="['/assiete', matricePaie.assiete?.id, 'view']">{{ matricePaie.assiete?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaie.echlon">
+              <a [routerLink]="['/echlon', matricePaie.echlon?.id, 'view']">{{ matricePaie.echlon?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaie.emploi">
+              <a [routerLink]="['/emploi', matricePaie.emploi?.id, 'view']">{{ matricePaie.emploi?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaie.category">
+              <a [routerLink]="['/category', matricePaie.category?.id, 'view']">{{ matricePaie.category?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaie.affilication">
+              <a [routerLink]="['/affiliation', matricePaie.affilication?.id, 'view']">{{ matricePaie.affilication?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaie.entreprise">
+              <a [routerLink]="['/entreprise', matricePaie.entreprise?.id, 'view']">{{ matricePaie.entreprise?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaie.groupe">
+              <a [routerLink]="['/groupe', matricePaie.groupe?.id, 'view']">{{ matricePaie.groupe?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaie.sexe">
+              <a [routerLink]="['/sexe', matricePaie.sexe?.id, 'view']">{{ matricePaie.sexe?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/matrice-paie', matricePaie.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/matrice-paie', matricePaie.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(matricePaie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="matricePaies && matricePaies.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

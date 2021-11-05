@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="AssieteInfoHeading">
+    <span>Assiete Infos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-assiete-info"
+        [routerLink]="['/assiete-info/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Assiete Info </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="assieteInfos?.length === 0">
+    <span>No assieteInfos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="assieteInfos && assieteInfos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="priorite"><span>Priorite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="val"><span>Val</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateSituation"><span>Date Situation</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdBy"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="rebrique.id"><span>Rebrique</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="assiete.id"><span>Assiete</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modeCal.id"><span>Mode Cal</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let assieteInfo of assieteInfos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/assiete-info', assieteInfo.id, 'view']">{{ assieteInfo.id }}</a>
+          </td>
+          <td>{{ assieteInfo.priorite }}</td>
+          <td>{{ assieteInfo.val }}</td>
+          <td>{{ assieteInfo.util }}</td>
+          <td>{{ assieteInfo.dateSituation | formatMediumDate }}</td>
+          <td>{{ assieteInfo.dateop | formatMediumDatetime }}</td>
+          <td>{{ assieteInfo.modifiedBy }}</td>
+          <td>{{ assieteInfo.createdBy }}</td>
+          <td>{{ assieteInfo.op }}</td>
+          <td>{{ assieteInfo.isDeleted }}</td>
+          <td>{{ assieteInfo.createdDate | formatMediumDatetime }}</td>
+          <td>{{ assieteInfo.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="assieteInfo.rebrique">
+              <a [routerLink]="['/rebrique', assieteInfo.rebrique?.id, 'view']">{{ assieteInfo.rebrique?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="assieteInfo.assiete">
+              <a [routerLink]="['/assiete', assieteInfo.assiete?.id, 'view']">{{ assieteInfo.assiete?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="assieteInfo.modeCal">
+              <a [routerLink]="['/mode-calcul', assieteInfo.modeCal?.id, 'view']">{{ assieteInfo.modeCal?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/assiete-info', assieteInfo.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/assiete-info', assieteInfo.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(assieteInfo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="assieteInfos && assieteInfos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

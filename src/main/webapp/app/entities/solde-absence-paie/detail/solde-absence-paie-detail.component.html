@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="soldeAbsencePaie">
+      <h2 data-cy="soldeAbsencePaieDetailsHeading"><span>Solde Absence Paie</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.id }}</span>
+        </dd>
+        <dt><span>Annee</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.annee }}</span>
+        </dd>
+        <dt><span>Mois</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.mois }}</span>
+        </dd>
+        <dt><span>Full Pay Right</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.fullPayRight }}</span>
+        </dd>
+        <dt><span>Half Pay Right</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.halfPayRight }}</span>
+        </dd>
+        <dt><span>Full Pay</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.fullPay }}</span>
+        </dd>
+        <dt><span>Half Pay</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.halfPay }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ soldeAbsencePaie.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Payroll</span></dt>
+        <dd>
+          <div *ngIf="soldeAbsencePaie.payroll">
+            <a [routerLink]="['/payroll', soldeAbsencePaie.payroll?.id, 'view']">{{ soldeAbsencePaie.payroll?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Nature Absence</span></dt>
+        <dd>
+          <div *ngIf="soldeAbsencePaie.natureAbsence">
+            <a [routerLink]="['/nature-absence', soldeAbsencePaie.natureAbsence?.id, 'view']">{{ soldeAbsencePaie.natureAbsence?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/solde-absence-paie', soldeAbsencePaie.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sousTypeContrat">
+      <h2 data-cy="sousTypeContratDetailsHeading"><span>Sous Type Contrat</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.code }}</span>
+        </dd>
+        <dt><span>Lib Ar</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.libAr }}</span>
+        </dd>
+        <dt><span>Lib En</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.libEn }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ sousTypeContrat.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Type Contrat</span></dt>
+        <dd>
+          <div *ngIf="sousTypeContrat.typeContrat">
+            <a [routerLink]="['/type-contrat', sousTypeContrat.typeContrat?.id, 'view']">{{ sousTypeContrat.typeContrat?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sous-type-contrat', sousTypeContrat.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

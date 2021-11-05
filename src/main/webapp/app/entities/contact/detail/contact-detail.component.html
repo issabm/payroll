@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contact">
+      <h2 data-cy="contactDetailsHeading"><span>Contact</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ contact.id }}</span>
+        </dd>
+        <dt><span>Nom Ar</span></dt>
+        <dd>
+          <span>{{ contact.nomAr }}</span>
+        </dd>
+        <dt><span>Prenom Ar</span></dt>
+        <dd>
+          <span>{{ contact.prenomAr }}</span>
+        </dd>
+        <dt><span>Nom En</span></dt>
+        <dd>
+          <span>{{ contact.nomEn }}</span>
+        </dd>
+        <dt><span>Prenom En</span></dt>
+        <dd>
+          <span>{{ contact.prenomEn }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ contact.email }}</span>
+        </dd>
+        <dt><span>Tel</span></dt>
+        <dd>
+          <span>{{ contact.tel }}</span>
+        </dd>
+        <dt><span>Phone</span></dt>
+        <dd>
+          <span>{{ contact.phone }}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+          <span>{{ contact.adresse }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ contact.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ contact.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ contact.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ contact.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ contact.isDeleted }}</span>
+        </dd>
+        <dt><span>Employe</span></dt>
+        <dd>
+          <div *ngIf="contact.employe">
+            <a [routerLink]="['/employe', contact.employe?.id, 'view']">{{ contact.employe?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact', contact.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

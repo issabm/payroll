@@ -1,0 +1,164 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="payroll">
+      <h2 data-cy="payrollDetailsHeading"><span>Payroll</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ payroll.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ payroll.code }}</span>
+        </dd>
+        <dt><span>Lib</span></dt>
+        <dd>
+          <span>{{ payroll.lib }}</span>
+        </dd>
+        <dt><span>Annee</span></dt>
+        <dd>
+          <span>{{ payroll.annee }}</span>
+        </dd>
+        <dt><span>Mois</span></dt>
+        <dd>
+          <span>{{ payroll.mois }}</span>
+        </dd>
+        <dt><span>Nb Full Paie</span></dt>
+        <dd>
+          <span>{{ payroll.nbFullPaie }}</span>
+        </dd>
+        <dt><span>Nb Half Paie</span></dt>
+        <dd>
+          <span>{{ payroll.nbHalfPaie }}</span>
+        </dd>
+        <dt><span>Nb Non Paie</span></dt>
+        <dd>
+          <span>{{ payroll.nbNonPaie }}</span>
+        </dd>
+        <dt><span>Date Calcul</span></dt>
+        <dd>
+          <span>{{ payroll.dateCalcul | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Valid</span></dt>
+        <dd>
+          <span>{{ payroll.dateValid | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Payroll</span></dt>
+        <dd>
+          <span>{{ payroll.datePayroll | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Total Cotis</span></dt>
+        <dd>
+          <span>{{ payroll.totalCotis }}</span>
+        </dd>
+        <dt><span>Total Retenue</span></dt>
+        <dd>
+          <span>{{ payroll.totalRetenue }}</span>
+        </dd>
+        <dt><span>Total Taxable</span></dt>
+        <dd>
+          <span>{{ payroll.totalTaxable }}</span>
+        </dd>
+        <dt><span>Total Tax</span></dt>
+        <dd>
+          <span>{{ payroll.totalTax }}</span>
+        </dd>
+        <dt><span>Total Net</span></dt>
+        <dd>
+          <span>{{ payroll.totalNet }}</span>
+        </dd>
+        <dt><span>Total Net Devise</span></dt>
+        <dd>
+          <span>{{ payroll.totalNetDevise }}</span>
+        </dd>
+        <dt><span>Taux Change</span></dt>
+        <dd>
+          <span>{{ payroll.tauxChange }}</span>
+        </dd>
+        <dt><span>Calcul By</span></dt>
+        <dd>
+          <span>{{ payroll.calculBy }}</span>
+        </dd>
+        <dt><span>Effect By</span></dt>
+        <dd>
+          <span>{{ payroll.effectBy }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ payroll.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ payroll.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ payroll.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ payroll.createdBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ payroll.op }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ payroll.util }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ payroll.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ payroll.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ payroll.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Employe</span></dt>
+        <dd>
+          <div *ngIf="payroll.employe">
+            <a [routerLink]="['/employe', payroll.employe?.id, 'view']">{{ payroll.employe?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Devise</span></dt>
+        <dd>
+          <div *ngIf="payroll.devise">
+            <a [routerLink]="['/devise', payroll.devise?.id, 'view']">{{ payroll.devise?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Mvt</span></dt>
+        <dd>
+          <div *ngIf="payroll.mvt">
+            <a [routerLink]="['/mouvement-paie', payroll.mvt?.id, 'view']">{{ payroll.mvt?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Situation</span></dt>
+        <dd>
+          <div *ngIf="payroll.situation">
+            <a [routerLink]="['/situation', payroll.situation?.id, 'view']">{{ payroll.situation?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payroll', payroll.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

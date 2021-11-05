@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="identite">
+      <h2 data-cy="identiteDetailsHeading"><span>Identite</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ identite.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ identite.code }}</span>
+        </dd>
+        <dt><span>Date Issued</span></dt>
+        <dd>
+          <span>{{ identite.dateIssued | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Place Issed</span></dt>
+        <dd>
+          <span>{{ identite.placeIssed }}</span>
+        </dd>
+        <dt><span>Date Vld</span></dt>
+        <dd>
+          <span>{{ identite.dateVld | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ identite.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ identite.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ identite.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ identite.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ identite.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ identite.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ identite.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Employe</span></dt>
+        <dd>
+          <div *ngIf="identite.employe">
+            <a [routerLink]="['/employe', identite.employe?.id, 'view']">{{ identite.employe?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Type Identite</span></dt>
+        <dd>
+          <div *ngIf="identite.typeIdentite">
+            <a [routerLink]="['/type-identite', identite.typeIdentite?.id, 'view']">{{ identite.typeIdentite?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/identite', identite.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

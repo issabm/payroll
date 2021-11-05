@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="NatureAbsenceRebriqueHeading">
+    <span>Nature Absence Rebriques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-nature-absence-rebrique"
+        [routerLink]="['/nature-absence-rebrique/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Nature Absence Rebrique </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="natureAbsenceRebriques?.length === 0">
+    <span>No natureAbsenceRebriques found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="natureAbsenceRebriques && natureAbsenceRebriques.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span>Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libAr"><span>Lib Ar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libEn"><span>Lib En</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="valueTaken"><span>Value Taken</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="natureAbsence.id"><span>Nature Absence</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="rebrique.id"><span>Rebrique</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let natureAbsenceRebrique of natureAbsenceRebriques; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/nature-absence-rebrique', natureAbsenceRebrique.id, 'view']">{{ natureAbsenceRebrique.id }}</a>
+          </td>
+          <td>{{ natureAbsenceRebrique.code }}</td>
+          <td>{{ natureAbsenceRebrique.libAr }}</td>
+          <td>{{ natureAbsenceRebrique.libEn }}</td>
+          <td>{{ natureAbsenceRebrique.valueTaken }}</td>
+          <td>{{ natureAbsenceRebrique.util }}</td>
+          <td>{{ natureAbsenceRebrique.dateop | formatMediumDatetime }}</td>
+          <td>{{ natureAbsenceRebrique.modifiedBy }}</td>
+          <td>{{ natureAbsenceRebrique.op }}</td>
+          <td>{{ natureAbsenceRebrique.isDeleted }}</td>
+          <td>{{ natureAbsenceRebrique.createdDate | formatMediumDatetime }}</td>
+          <td>{{ natureAbsenceRebrique.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="natureAbsenceRebrique.natureAbsence">
+              <a [routerLink]="['/nature-absence', natureAbsenceRebrique.natureAbsence?.id, 'view']">{{
+                natureAbsenceRebrique.natureAbsence?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="natureAbsenceRebrique.rebrique">
+              <a [routerLink]="['/rebrique', natureAbsenceRebrique.rebrique?.id, 'view']">{{ natureAbsenceRebrique.rebrique?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/nature-absence-rebrique', natureAbsenceRebrique.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/nature-absence-rebrique', natureAbsenceRebrique.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(natureAbsenceRebrique)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="natureAbsenceRebriques && natureAbsenceRebriques.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity AssieteInfo.
+    -->
+    <changeSet id="20211105131129-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="rebrique_id"
+                                 baseTableName="pr_assiet_detai"
+                                 constraintName="fk_pr_assiet_detai__rebrique_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_rebrique"/>
+
+        <addForeignKeyConstraint baseColumnNames="assiete_id"
+                                 baseTableName="pr_assiet_detai"
+                                 constraintName="fk_pr_assiet_detai__assiete_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_assiet"/>
+
+        <addForeignKeyConstraint baseColumnNames="mode_cal_id"
+                                 baseTableName="pr_assiet_detai"
+                                 constraintName="fk_pr_assiet_detai__mode_cal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_mod_cal"/>
+    </changeSet>
+</databaseChangeLog>

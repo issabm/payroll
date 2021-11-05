@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="formPaieLigneReb">
+      <h2 data-cy="formPaieLigneRebDetailsHeading"><span>Form Paie Ligne Reb</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.id }}</span>
+        </dd>
+        <dt><span>Priorite</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.priorite }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.code }}</span>
+        </dd>
+        <dt><span>Lib En</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.libEn }}</span>
+        </dd>
+        <dt><span>Lib Ar</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.libAr }}</span>
+        </dd>
+        <dt><span>Val Origin</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.valOrigin }}</span>
+        </dd>
+        <dt><span>Val Calcul</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.valCalcul }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.createdBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.op }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.util }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ formPaieLigneReb.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Form Paie Ligne</span></dt>
+        <dd>
+          <div *ngIf="formPaieLigneReb.formPaieLigne">
+            <a [routerLink]="['/form-paie-ligne', formPaieLigneReb.formPaieLigne?.id, 'view']">{{ formPaieLigneReb.formPaieLigne?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/form-paie-ligne-reb', formPaieLigneReb.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

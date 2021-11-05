@@ -1,0 +1,77 @@
+{
+  "name": "SoldeAbsence",
+  "fields": [
+    {
+      "fieldName": "annee",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fullPayRight",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "halfPayRight",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fullPay",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "halfPay",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "util",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateop",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "op",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "soldeAbsence",
+      "relationshipName": "affectation"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "natureAbsence",
+      "otherEntityRelationshipName": "soldeAbsence",
+      "relationshipName": "natureAbsence"
+    }
+  ],
+  "entityTableName": "rh_solde_abs",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211105131106"
+}

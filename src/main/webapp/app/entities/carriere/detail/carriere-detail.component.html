@@ -1,0 +1,100 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="carriere">
+      <h2 data-cy="carriereDetailsHeading"><span>Carriere</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ carriere.id }}</span>
+        </dd>
+        <dt><span>Date Debut</span></dt>
+        <dd>
+          <span>{{ carriere.dateDebut | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Fin</span></dt>
+        <dd>
+          <span>{{ carriere.dateFin | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Emploi</span></dt>
+        <dd>
+          <span>{{ carriere.dateEmploi | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Echlon</span></dt>
+        <dd>
+          <span>{{ carriere.dateEchlon | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Categorie</span></dt>
+        <dd>
+          <span>{{ carriere.dateCategorie | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ carriere.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ carriere.util }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ carriere.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ carriere.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ carriere.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ carriere.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ carriere.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Echlon</span></dt>
+        <dd>
+          <div *ngIf="carriere.echlon">
+            <a [routerLink]="['/echlon', carriere.echlon?.id, 'view']">{{ carriere.echlon?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+          <div *ngIf="carriere.category">
+            <a [routerLink]="['/category', carriere.category?.id, 'view']">{{ carriere.category?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Emploi</span></dt>
+        <dd>
+          <div *ngIf="carriere.emploi">
+            <a [routerLink]="['/emploi', carriere.emploi?.id, 'view']">{{ carriere.emploi?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Affectation</span></dt>
+        <dd>
+          <div *ngIf="carriere.affectation">
+            <a [routerLink]="['/affectation', carriere.affectation?.id, 'view']">{{ carriere.affectation?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/carriere', carriere.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

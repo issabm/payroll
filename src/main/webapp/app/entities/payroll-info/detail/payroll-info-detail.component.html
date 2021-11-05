@@ -1,0 +1,122 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="payrollInfo">
+      <h2 data-cy="payrollInfoDetailsHeading"><span>Payroll Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ payrollInfo.id }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ payrollInfo.util }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ payrollInfo.code }}</span>
+        </dd>
+        <dt><span>Lib Ar</span></dt>
+        <dd>
+          <span>{{ payrollInfo.libAr }}</span>
+        </dd>
+        <dt><span>Lib Er</span></dt>
+        <dd>
+          <span>{{ payrollInfo.libEr }}</span>
+        </dd>
+        <dt><span>Calcul Val</span></dt>
+        <dd>
+          <span>{{ payrollInfo.calculVal }}</span>
+        </dd>
+        <dt><span>Effect Val</span></dt>
+        <dd>
+          <span>{{ payrollInfo.effectVal }}</span>
+        </dd>
+        <dt><span>Taux Abs</span></dt>
+        <dd>
+          <span>{{ payrollInfo.tauxAbs }}</span>
+        </dd>
+        <dt><span>Final Val</span></dt>
+        <dd>
+          <span>{{ payrollInfo.finalVal }}</span>
+        </dd>
+        <dt><span>Effect Val Devise</span></dt>
+        <dd>
+          <span>{{ payrollInfo.effectValDevise }}</span>
+        </dd>
+        <dt><span>Taux Change</span></dt>
+        <dd>
+          <span>{{ payrollInfo.tauxChange }}</span>
+        </dd>
+        <dt><span>Date Calcul</span></dt>
+        <dd>
+          <span>{{ payrollInfo.dateCalcul | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Effect</span></dt>
+        <dd>
+          <span>{{ payrollInfo.dateEffect | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Calcul By</span></dt>
+        <dd>
+          <span>{{ payrollInfo.calculBy }}</span>
+        </dd>
+        <dt><span>Effect By</span></dt>
+        <dd>
+          <span>{{ payrollInfo.effectBy }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ payrollInfo.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ payrollInfo.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ payrollInfo.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ payrollInfo.createdBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ payrollInfo.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ payrollInfo.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ payrollInfo.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ payrollInfo.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Payroll</span></dt>
+        <dd>
+          <div *ngIf="payrollInfo.payroll">
+            <a [routerLink]="['/payroll', payrollInfo.payroll?.id, 'view']">{{ payrollInfo.payroll?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payroll-info', payrollInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity RebriqueContrat.
+    -->
+    <changeSet id="20211105131128-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="rebrqiue_id"
+                                 baseTableName="ref_reb_contrat"
+                                 constraintName="fk_ref_reb_contrat__rebrqiue_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_rebrique"/>
+
+        <addForeignKeyConstraint baseColumnNames="sous_type_contrat_id"
+                                 baseTableName="ref_reb_contrat"
+                                 constraintName="fk_ref_reb_contrat__sous_type_contrat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_s_type_contrat"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_contrat_id"
+                                 baseTableName="ref_reb_contrat"
+                                 constraintName="fk_ref_reb_contrat__type_contrat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_type_contrat"/>
+    </changeSet>
+</databaseChangeLog>

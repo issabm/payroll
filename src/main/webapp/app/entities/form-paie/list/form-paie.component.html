@@ -1,0 +1,124 @@
+<div>
+  <h2 id="page-heading" data-cy="FormPaieHeading">
+    <span>Form Paies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-form-paie"
+        [routerLink]="['/form-paie/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Form Paie </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="formPaies?.length === 0">
+    <span>No formPaies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="formPaies && formPaies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span>Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libEn"><span>Lib En</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libAr"><span>Lib Ar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="anneDebut"><span>Anne Debut</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="anneeFin"><span>Annee Fin</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="moisDebut"><span>Mois Debut</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="moisFin"><span>Mois Fin</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdBy"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let formPaie of formPaies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/form-paie', formPaie.id, 'view']">{{ formPaie.id }}</a>
+          </td>
+          <td>{{ formPaie.code }}</td>
+          <td>{{ formPaie.libEn }}</td>
+          <td>{{ formPaie.libAr }}</td>
+          <td>{{ formPaie.anneDebut }}</td>
+          <td>{{ formPaie.anneeFin }}</td>
+          <td>{{ formPaie.moisDebut }}</td>
+          <td>{{ formPaie.moisFin }}</td>
+          <td>{{ formPaie.dateop | formatMediumDatetime }}</td>
+          <td>{{ formPaie.modifiedBy }}</td>
+          <td>{{ formPaie.createdBy }}</td>
+          <td>{{ formPaie.util }}</td>
+          <td>{{ formPaie.op }}</td>
+          <td>{{ formPaie.isDeleted }}</td>
+          <td>{{ formPaie.createdDate | formatMediumDatetime }}</td>
+          <td>{{ formPaie.modifiedDate | formatMediumDatetime }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/form-paie', formPaie.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/form-paie', formPaie.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(formPaie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="formPaies && formPaies.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
