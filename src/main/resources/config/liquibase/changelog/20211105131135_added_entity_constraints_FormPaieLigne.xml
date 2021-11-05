@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity FormPaieLigne.
+    -->
+    <changeSet id="20211105131135-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="form_paie_id"
+                                 baseTableName="pr_form_ligne"
+                                 constraintName="fk_pr_form_ligne__form_paie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_form_payroll"/>
+
+        <addForeignKeyConstraint baseColumnNames="operator_form_id"
+                                 baseTableName="pr_form_ligne"
+                                 constraintName="fk_pr_form_ligne__operator_form_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_operator_form"/>
+
+        <addForeignKeyConstraint baseColumnNames="assiete_id"
+                                 baseTableName="pr_form_ligne"
+                                 constraintName="fk_pr_form_ligne__assiete_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_assiet"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,1039 @@
+entity Employe (rh_employe)
+{
+
+matricule String
+nomAr    String
+nomJfAr    String
+prenomAr   String
+nomEn String
+nomJfEn String
+prenomEn String
+nomPereAr    String
+nomPereEn    String
+nomMereAr    String
+nomMereEn    String
+nomGpAr    String
+nomGpEn    String
+dateNaiss LocalDate
+rib String
+banque String
+dateRib String
+dateBanque String
+img ImageBlob
+util String
+dateop ZonedDateTime
+dateModif ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+
+}
+
+entity PalierImpo (cfg_global)
+{
+annee Integer
+payrollMin Double
+payrollMax Double
+impoValue Double
+util String
+dateop ZonedDateTime
+dateModif ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+}
+
+entity Conjoint (rh_conjoint)
+{
+
+matricule String
+nomAr    String
+prenomAr   String
+nomEn String
+prenomEn String
+dateNaiss LocalDate
+util String
+dateop ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+
+}
+
+entity Enfant (rh_enfant)
+{
+
+nomAr    String
+prenomAr   String
+nomEn String
+prenomEn String
+dateNaiss LocalDate
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+
+}
+
+entity Contact (rh_contact)
+{
+
+nomAr    String
+prenomAr   String
+nomEn String
+prenomEn String
+email String
+tel String
+phone String
+adresse String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+
+}
+
+
+
+entity Frequence (ref_freq) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+
+}
+
+entity Sens (ref_sens) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+
+}
+
+entity ModeCalcul (ref_mod_cal) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+
+}
+entity Concerne (ref_concern) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+
+}
+
+entity TypeContrat (ref_type_contrat) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+
+}
+
+entity SousTypeContrat (ref_s_type_contrat) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+
+}
+
+entity NiveauScolaire (ref_niv_scol) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+
+}
+
+
+entity SituationFamiliale (ref_sit_fam) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity TypeIdentite (ref_type_identite) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity Identite (rh_identite) 
+{
+code String
+dateIssued LocalDate
+placeIssed String
+dateVld LocalDate
+
+
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity NatureAdhesion (ref_nature_adhesion) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Situation (ref_situation) 
+{
+code String
+entityTarget String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Sexe (ref_sexe) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity NatureAbsence (ref_nature_absence) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+fullPay Integer
+halfPay Integer
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity SoldeAbsence (rh_solde_abs) 
+{
+annee Integer
+fullPayRight Integer
+halfPayRight Integer  
+fullPay Integer
+halfPay Integer
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity SoldeAbsenceContrat (ref_solde_abs) 
+{
+annee Integer
+fullPayRight Integer
+halfPayRight Integer  
+
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity NatureAbsenceRebrique (ref_nat_abs_paie) 
+{
+code String
+libAr    String
+libEn String
+valueTaken Double
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity Emploi (ref_emploi) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Category (ref_category) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Echlon (ref_echlon) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity TypeHandicap (ref_type_handicap) 
+{
+code String
+libAr    String
+libEn String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity Groupe (rh_groupe) 
+{
+code String
+libAr    String
+libEn String
+addresseAr String
+addresseEn String
+tel String
+email String
+fax String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+
+}
+
+
+entity Entreprise (rh_entreprise) 
+{
+code String
+matFiscal String
+registreCommerce String
+nomCommerceAr    String
+nomCommerceEn String
+raisonSocialAr    String
+raisonSocialEn String
+addresseAr String
+addresseEn String
+codePostal String
+tel String
+email String
+fax String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+
+}
+
+entity Affiliation (rh_affiliation) 
+{
+code String
+libAr    String
+libEn String
+tel String
+email String
+fax String
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+
+}
+entity Devise (ref_devise) 
+{
+code String
+libAr    String
+libEn String
+dateop ZonedDateTime
+util String
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity Carriere (rh_carriere) 
+{
+
+dateDebut LocalDate
+dateFin LocalDate
+dateEmploi LocalDate
+dateEchlon LocalDate
+dateCategorie LocalDate
+dateop ZonedDateTime
+util String
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Contrat (rh_contrat) 
+{
+matricule String
+dateDebut LocalDate
+dateFin LocalDate
+util String
+dateop ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Adhesion (rh_adhesion) 
+{
+
+dateDebut LocalDate
+dateFin LocalDate
+util String
+dateop ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity EntityAdhesion (ref_adhesion) 
+{
+code String
+libEn String
+libAr String
+util String
+dateop ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Affectation (rh_affect) 
+{
+matricule String
+dateDebut LocalDate
+dateFin LocalDate
+dateop ZonedDateTime
+util String
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Pays (ref_pays) 
+{
+code String
+libAr    String
+libEn String
+dateop ZonedDateTime
+util String
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+
+
+
+
+entity MatricePaie (pr_matrice) 
+{
+code String
+libAr    String
+libEn String
+isDisplay Boolean
+anneeDebut Integer
+moisDebut Integer
+anneeFin Integer
+moisFin Integer
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity MatricePaieEmp (pr_matrice_emp) 
+{
+util String
+dateop ZonedDateTime
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Famille(rh_famille) 
+{
+
+dateSituation LocalDate
+dateop ZonedDateTime
+util String
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+
+entity Rebrique(pr_rebrique) 
+{
+priorite Integer     
+code String
+libAr String
+libEn String
+inTax Boolean
+inSocial Boolean
+inBp Boolean
+val Double
+dateSituation LocalDate
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+util String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity Assiete(pr_assiet) 
+{
+priorite Integer 
+code String
+lib String
+dateSituation LocalDate
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+util String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity RebriqueContrat(ref_reb_contrat) 
+{
+
+util String
+dateSituation LocalDate
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity AssieteInfo(pr_assiet_detai) 
+{
+priorite Integer 
+val Double
+util String
+dateSituation LocalDate
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity SoldeAbsencePaie (pr_solde_abs) 
+{
+annee Integer
+mois Integer
+fullPayRight Integer
+halfPayRight Integer  
+fullPay Integer
+halfPay Integer
+util String
+dateop ZonedDateTime
+
+modifiedBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity PayrollInfo(pr_Info) 
+{
+util String
+code String
+libAr String
+libEr String
+calculVal Double
+effectVal Double
+tauxAbs Double
+finalVal Double
+effectValDevise Double
+tauxChange Double
+dateCalcul LocalDate
+dateEffect LocalDate
+calculBy String
+effectBy String
+dateSituation LocalDate
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity ManagementResource(rh_manage_resource) 
+{
+util String
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity FormPaie(pr_form_payroll) 
+{
+code String
+libEn String
+libAr String
+anneDebut Integer
+anneeFin Integer
+moisDebut Integer
+moisFin Integer
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+util String
+op String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity OperatorForm(pr_operator_form) 
+{
+code String
+libEn String
+libAr String
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+util String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity FormPaieLigne (pr_form_ligne)
+{
+priorite Integer    
+code String
+libEn String
+libAr String
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+util String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity FormPaieLigneReb (pr_form_ligne_rb)
+{
+priorite Integer    
+code String
+libEn String
+libAr String
+valOrigin Double
+valCalcul Double
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+util String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity ManagementResourceProfile(rh_manage_rule) 
+{
+profile String
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+util String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+entity Payroll(pr_payroll) 
+{
+code String
+lib String
+annee Integer
+mois Integer
+nbFullPaie Integer
+nbHalfPaie Integer
+nbNonPaie Integer
+dateCalcul LocalDate
+dateValid LocalDate
+datePayroll LocalDate
+totalCotis Double
+totalRetenue Double
+totalTaxable Double
+totalTax Double
+totalNet Double
+totalNetDevise Double
+tauxChange Double
+calculBy String
+effectBy String
+dateSituation LocalDate
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+util String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime
+}
+
+entity MouvementPaie (pr_mvt_paie)
+{
+code String
+lib String
+annee Integer
+mois Integer
+dateCalcul LocalDate
+dateValid LocalDate
+datePayroll LocalDate
+totalCotis Double
+totalRetenue Double
+totalTaxable Double
+totalTax Double
+totalNet Double
+totalNetDevise Double
+tauxChange Double
+calculBy String
+effectBy String
+dateSituation LocalDate
+dateop ZonedDateTime
+modifiedBy String
+createdBy String
+op String
+util String
+isDeleted Boolean
+createdDate ZonedDateTime
+modifiedDate ZonedDateTime  
+}
+
+
+entity UserLog (sys_user_log)
+{
+op String
+util String
+dateOp ZonedDateTime
+}
+
+paginate all with pagination
+service all with serviceImpl
+
+relationship ManyToOne
+{
+EntityAdhesion {natureAdhesion} to NatureAdhesion
+Adhesion {employe} to Employe
+Adhesion {entityAdhesion} to EntityAdhesion
+
+Contact {employe} to Employe
+
+Identite {employe} to Employe
+Identite {typeIdentite} to TypeIdentite
+
+
+Employe {situation}  to Situation
+Employe {nationalite}  to Pays
+
+Famille  {employe} to  Employe
+Famille  {situationFamiliale} to  SituationFamiliale
+Famille  {conjoint} to  Conjoint
+
+Conjoint {sexe} to Sexe
+
+Enfant  {typeHandicap} to  TypeHandicap
+Enfant  {sexe} to  Sexe
+Enfant  {nivScolaire} to  NiveauScolaire
+
+Carriere  {echlon} to  Echlon
+Carriere  {category} to  Category
+Carriere  {emploi} to  Emploi
+Carriere  {affectation} to  Affectation
+
+SoldeAbsence  {affectation} to  Employe
+SoldeAbsence {natureAbsence} to NatureAbsence
+
+SoldeAbsenceContrat {typeContrat} to TypeContrat
+
+Affectation {Contrat} to Contrat
+Affectation {groupe} to Groupe
+Affectation {entreprise} to Entreprise
+Affectation {affiliation}  to Affiliation
+Affectation {situation}  to Situation
+
+Contrat {employe} to Employe
+Contrat {sousType} to SousTypeContrat
+Contrat {groupe} to Groupe
+Contrat {entreprise} to Entreprise
+Contrat {affiliation}  to Affiliation
+Contrat {devise}  to Devise
+
+
+
+Groupe {pays} to Pays
+Groupe {devise}  to Devise
+
+Entreprise {groupe} to Groupe
+Entreprise {pays} to Pays
+Entreprise {mere} to Entreprise
+Entreprise {devise}  to Devise
+
+
+Affiliation {entreprise} to Entreprise
+Affiliation {direction} to Affiliation
+Affiliation {pays} to Pays
+Affiliation {devise}  to Devise
+
+
+SousTypeContrat {typeContrat} to TypeContrat
+
+Rebrique {sens} to Sens
+Rebrique {concerne} to Concerne
+Rebrique {frequence} to Frequence
+
+RebriqueContrat {rebrqiue} to Rebrique
+RebriqueContrat {sousTypeContrat} to SousTypeContrat
+RebriqueContrat {typeContrat} to TypeContrat
+
+AssieteInfo {rebrique} to Rebrique
+AssieteInfo {assiete} to Assiete
+AssieteInfo {modeCal} to ModeCalcul
+
+MatricePaie {assiete} to Assiete
+MatricePaie {echlon} to Echlon
+MatricePaie {emploi} to Emploi
+MatricePaie {category} to Category
+MatricePaie {affilication} to Affiliation
+MatricePaie {entreprise} to Entreprise
+MatricePaie {groupe} to Groupe
+MatricePaie {sexe} to Sexe
+
+MatricePaieEmp  {matricePaie} to MatricePaie
+MatricePaieEmp  {employe} to Employe
+MatricePaieEmp  {situation} to Situation
+
+MouvementPaie {situation} to Situation
+MouvementPaie {groupe} to Groupe
+MouvementPaie {entreprise} to Entreprise
+MouvementPaie {affiliation} to Affiliation
+
+PalierImpo {pays} to Pays
+PalierImpo {situation} to Situation
+Payroll {employe} to Employe
+Payroll {devise} to Devise
+Payroll {mvt} to MouvementPaie
+Payroll {situation}  to Situation
+
+SoldeAbsencePaie {payroll} to Payroll
+SoldeAbsencePaie {natureAbsence} to NatureAbsence
+
+PayrollInfo {payroll} to Payroll
+
+FormPaieLigne { formPaie } to FormPaie
+FormPaieLigne { operatorForm } to OperatorForm
+FormPaieLigne { assiete } to Assiete
+
+FormPaieLigneReb { formPaieLigne } to FormPaieLigne
+
+
+ManagementResource {situation}  to Situation
+ManagementResource {employe}  to Employe
+ManagementResource {entreprise}  to Entreprise
+ManagementResource {groupe}  to Groupe
+ManagementResource {affiliation}  to Affiliation
+
+ManagementResourceProfile {ressourceManage}  to ManagementResource
+
+NatureAbsenceRebrique {natureAbsence} to NatureAbsence
+NatureAbsenceRebrique {rebrique} to Rebrique
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

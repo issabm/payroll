@@ -1,0 +1,146 @@
+<div>
+  <h2 id="page-heading" data-cy="RebriqueHeading">
+    <span>Rebriques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-rebrique"
+        [routerLink]="['/rebrique/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Rebrique </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="rebriques?.length === 0">
+    <span>No rebriques found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="rebriques && rebriques.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="priorite"><span>Priorite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span>Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libAr"><span>Lib Ar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libEn"><span>Lib En</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="inTax"><span>In Tax</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="inSocial"><span>In Social</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="inBp"><span>In Bp</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="val"><span>Val</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateSituation"><span>Date Situation</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdBy"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="sens.id"><span>Sens</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="concerne.id"><span>Concerne</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="frequence.id"><span>Frequence</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rebrique of rebriques; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/rebrique', rebrique.id, 'view']">{{ rebrique.id }}</a>
+          </td>
+          <td>{{ rebrique.priorite }}</td>
+          <td>{{ rebrique.code }}</td>
+          <td>{{ rebrique.libAr }}</td>
+          <td>{{ rebrique.libEn }}</td>
+          <td>{{ rebrique.inTax }}</td>
+          <td>{{ rebrique.inSocial }}</td>
+          <td>{{ rebrique.inBp }}</td>
+          <td>{{ rebrique.val }}</td>
+          <td>{{ rebrique.dateSituation | formatMediumDate }}</td>
+          <td>{{ rebrique.dateop | formatMediumDatetime }}</td>
+          <td>{{ rebrique.modifiedBy }}</td>
+          <td>{{ rebrique.createdBy }}</td>
+          <td>{{ rebrique.util }}</td>
+          <td>{{ rebrique.op }}</td>
+          <td>{{ rebrique.isDeleted }}</td>
+          <td>{{ rebrique.createdDate | formatMediumDatetime }}</td>
+          <td>{{ rebrique.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="rebrique.sens">
+              <a [routerLink]="['/sens', rebrique.sens?.id, 'view']">{{ rebrique.sens?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="rebrique.concerne">
+              <a [routerLink]="['/concerne', rebrique.concerne?.id, 'view']">{{ rebrique.concerne?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="rebrique.frequence">
+              <a [routerLink]="['/frequence', rebrique.frequence?.id, 'view']">{{ rebrique.frequence?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/rebrique', rebrique.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/rebrique', rebrique.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(rebrique)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="rebriques && rebriques.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

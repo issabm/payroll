@@ -1,0 +1,136 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matricePaie">
+      <h2 data-cy="matricePaieDetailsHeading"><span>Matrice Paie</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ matricePaie.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ matricePaie.code }}</span>
+        </dd>
+        <dt><span>Lib Ar</span></dt>
+        <dd>
+          <span>{{ matricePaie.libAr }}</span>
+        </dd>
+        <dt><span>Lib En</span></dt>
+        <dd>
+          <span>{{ matricePaie.libEn }}</span>
+        </dd>
+        <dt><span>Is Display</span></dt>
+        <dd>
+          <span>{{ matricePaie.isDisplay }}</span>
+        </dd>
+        <dt><span>Annee Debut</span></dt>
+        <dd>
+          <span>{{ matricePaie.anneeDebut }}</span>
+        </dd>
+        <dt><span>Mois Debut</span></dt>
+        <dd>
+          <span>{{ matricePaie.moisDebut }}</span>
+        </dd>
+        <dt><span>Annee Fin</span></dt>
+        <dd>
+          <span>{{ matricePaie.anneeFin }}</span>
+        </dd>
+        <dt><span>Mois Fin</span></dt>
+        <dd>
+          <span>{{ matricePaie.moisFin }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ matricePaie.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ matricePaie.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ matricePaie.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ matricePaie.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ matricePaie.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ matricePaie.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ matricePaie.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Assiete</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.assiete">
+            <a [routerLink]="['/assiete', matricePaie.assiete?.id, 'view']">{{ matricePaie.assiete?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Echlon</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.echlon">
+            <a [routerLink]="['/echlon', matricePaie.echlon?.id, 'view']">{{ matricePaie.echlon?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Emploi</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.emploi">
+            <a [routerLink]="['/emploi', matricePaie.emploi?.id, 'view']">{{ matricePaie.emploi?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.category">
+            <a [routerLink]="['/category', matricePaie.category?.id, 'view']">{{ matricePaie.category?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Affilication</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.affilication">
+            <a [routerLink]="['/affiliation', matricePaie.affilication?.id, 'view']">{{ matricePaie.affilication?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Entreprise</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.entreprise">
+            <a [routerLink]="['/entreprise', matricePaie.entreprise?.id, 'view']">{{ matricePaie.entreprise?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Groupe</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.groupe">
+            <a [routerLink]="['/groupe', matricePaie.groupe?.id, 'view']">{{ matricePaie.groupe?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <div *ngIf="matricePaie.sexe">
+            <a [routerLink]="['/sexe', matricePaie.sexe?.id, 'view']">{{ matricePaie.sexe?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/matrice-paie', matricePaie.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

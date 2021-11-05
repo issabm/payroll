@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity MatricePaieEmp.
+    -->
+    <changeSet id="20211105131124-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="matrice_paie_id"
+                                 baseTableName="pr_matrice_emp"
+                                 constraintName="fk_pr_matrice_emp__matrice_paie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pr_matrice"/>
+
+        <addForeignKeyConstraint baseColumnNames="employe_id"
+                                 baseTableName="pr_matrice_emp"
+                                 constraintName="fk_pr_matrice_emp__employe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rh_employe"/>
+
+        <addForeignKeyConstraint baseColumnNames="situation_id"
+                                 baseTableName="pr_matrice_emp"
+                                 constraintName="fk_pr_matrice_emp__situation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_situation"/>
+    </changeSet>
+</databaseChangeLog>

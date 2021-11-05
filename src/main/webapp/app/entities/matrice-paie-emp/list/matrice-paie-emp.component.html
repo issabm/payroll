@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="MatricePaieEmpHeading">
+    <span>Matrice Paie Emps</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-matrice-paie-emp"
+        [routerLink]="['/matrice-paie-emp/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Matrice Paie Emp </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="matricePaieEmps?.length === 0">
+    <span>No matricePaieEmps found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="matricePaieEmps && matricePaieEmps.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="util"><span>Util</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateop"><span>Dateop</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="op"><span>Op</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isDeleted"><span>Is Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="modifiedDate"><span>Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="matricePaie.id"><span>Matrice Paie</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="employe.id"><span>Employe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="situation.id"><span>Situation</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let matricePaieEmp of matricePaieEmps; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/matrice-paie-emp', matricePaieEmp.id, 'view']">{{ matricePaieEmp.id }}</a>
+          </td>
+          <td>{{ matricePaieEmp.util }}</td>
+          <td>{{ matricePaieEmp.dateop | formatMediumDatetime }}</td>
+          <td>{{ matricePaieEmp.modifiedBy }}</td>
+          <td>{{ matricePaieEmp.op }}</td>
+          <td>{{ matricePaieEmp.isDeleted }}</td>
+          <td>{{ matricePaieEmp.createdDate | formatMediumDatetime }}</td>
+          <td>{{ matricePaieEmp.modifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="matricePaieEmp.matricePaie">
+              <a [routerLink]="['/matrice-paie', matricePaieEmp.matricePaie?.id, 'view']">{{ matricePaieEmp.matricePaie?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaieEmp.employe">
+              <a [routerLink]="['/employe', matricePaieEmp.employe?.id, 'view']">{{ matricePaieEmp.employe?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="matricePaieEmp.situation">
+              <a [routerLink]="['/situation', matricePaieEmp.situation?.id, 'view']">{{ matricePaieEmp.situation?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/matrice-paie-emp', matricePaieEmp.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/matrice-paie-emp', matricePaieEmp.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(matricePaieEmp)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="matricePaieEmps && matricePaieEmps.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

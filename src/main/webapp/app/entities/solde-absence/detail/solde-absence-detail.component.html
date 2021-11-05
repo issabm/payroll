@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="soldeAbsence">
+      <h2 data-cy="soldeAbsenceDetailsHeading"><span>Solde Absence</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.id }}</span>
+        </dd>
+        <dt><span>Annee</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.annee }}</span>
+        </dd>
+        <dt><span>Full Pay Right</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.fullPayRight }}</span>
+        </dd>
+        <dt><span>Half Pay Right</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.halfPayRight }}</span>
+        </dd>
+        <dt><span>Full Pay</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.fullPay }}</span>
+        </dd>
+        <dt><span>Half Pay</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.halfPay }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ soldeAbsence.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Affectation</span></dt>
+        <dd>
+          <div *ngIf="soldeAbsence.affectation">
+            <a [routerLink]="['/employe', soldeAbsence.affectation?.id, 'view']">{{ soldeAbsence.affectation?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Nature Absence</span></dt>
+        <dd>
+          <div *ngIf="soldeAbsence.natureAbsence">
+            <a [routerLink]="['/nature-absence', soldeAbsence.natureAbsence?.id, 'view']">{{ soldeAbsence.natureAbsence?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/solde-absence', soldeAbsence.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

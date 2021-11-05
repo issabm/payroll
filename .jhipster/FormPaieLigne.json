@@ -1,0 +1,83 @@
+{
+  "name": "FormPaieLigne",
+  "fields": [
+    {
+      "fieldName": "priorite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "libEn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "libAr",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateop",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "op",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "util",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "formPaie",
+      "otherEntityRelationshipName": "formPaieLigne",
+      "relationshipName": "formPaie"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "operatorForm",
+      "otherEntityRelationshipName": "formPaieLigne",
+      "relationshipName": "operatorForm"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "assiete",
+      "otherEntityRelationshipName": "formPaieLigne",
+      "relationshipName": "assiete"
+    }
+  ],
+  "entityTableName": "pr_form_ligne",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211105131135"
+}

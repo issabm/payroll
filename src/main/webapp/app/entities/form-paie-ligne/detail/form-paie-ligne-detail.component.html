@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="formPaieLigne">
+      <h2 data-cy="formPaieLigneDetailsHeading"><span>Form Paie Ligne</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.id }}</span>
+        </dd>
+        <dt><span>Priorite</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.priorite }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.code }}</span>
+        </dd>
+        <dt><span>Lib En</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.libEn }}</span>
+        </dd>
+        <dt><span>Lib Ar</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.libAr }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.createdBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.op }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.util }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ formPaieLigne.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Form Paie</span></dt>
+        <dd>
+          <div *ngIf="formPaieLigne.formPaie">
+            <a [routerLink]="['/form-paie', formPaieLigne.formPaie?.id, 'view']">{{ formPaieLigne.formPaie?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Operator Form</span></dt>
+        <dd>
+          <div *ngIf="formPaieLigne.operatorForm">
+            <a [routerLink]="['/operator-form', formPaieLigne.operatorForm?.id, 'view']">{{ formPaieLigne.operatorForm?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Assiete</span></dt>
+        <dd>
+          <div *ngIf="formPaieLigne.assiete">
+            <a [routerLink]="['/assiete', formPaieLigne.assiete?.id, 'view']">{{ formPaieLigne.assiete?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/form-paie-ligne', formPaieLigne.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

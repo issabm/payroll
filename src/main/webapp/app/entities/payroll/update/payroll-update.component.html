@@ -1,0 +1,374 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-payroll-heading" data-cy="PayrollCreateUpdateHeading">Create or edit a Payroll</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_lib">Lib</label>
+          <input type="text" class="form-control" name="lib" id="field_lib" data-cy="lib" formControlName="lib" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_annee">Annee</label>
+          <input type="number" class="form-control" name="annee" id="field_annee" data-cy="annee" formControlName="annee" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_mois">Mois</label>
+          <input type="number" class="form-control" name="mois" id="field_mois" data-cy="mois" formControlName="mois" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nbFullPaie">Nb Full Paie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nbFullPaie"
+            id="field_nbFullPaie"
+            data-cy="nbFullPaie"
+            formControlName="nbFullPaie"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nbHalfPaie">Nb Half Paie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nbHalfPaie"
+            id="field_nbHalfPaie"
+            data-cy="nbHalfPaie"
+            formControlName="nbHalfPaie"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nbNonPaie">Nb Non Paie</label>
+          <input type="number" class="form-control" name="nbNonPaie" id="field_nbNonPaie" data-cy="nbNonPaie" formControlName="nbNonPaie" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateCalcul">Date Calcul</label>
+          <div class="input-group">
+            <input
+              id="field_dateCalcul"
+              data-cy="dateCalcul"
+              type="text"
+              class="form-control"
+              name="dateCalcul"
+              ngbDatepicker
+              #dateCalculDp="ngbDatepicker"
+              formControlName="dateCalcul"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateCalculDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateValid">Date Valid</label>
+          <div class="input-group">
+            <input
+              id="field_dateValid"
+              data-cy="dateValid"
+              type="text"
+              class="form-control"
+              name="dateValid"
+              ngbDatepicker
+              #dateValidDp="ngbDatepicker"
+              formControlName="dateValid"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateValidDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_datePayroll">Date Payroll</label>
+          <div class="input-group">
+            <input
+              id="field_datePayroll"
+              data-cy="datePayroll"
+              type="text"
+              class="form-control"
+              name="datePayroll"
+              ngbDatepicker
+              #datePayrollDp="ngbDatepicker"
+              formControlName="datePayroll"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="datePayrollDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_totalCotis">Total Cotis</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalCotis"
+            id="field_totalCotis"
+            data-cy="totalCotis"
+            formControlName="totalCotis"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_totalRetenue">Total Retenue</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalRetenue"
+            id="field_totalRetenue"
+            data-cy="totalRetenue"
+            formControlName="totalRetenue"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_totalTaxable">Total Taxable</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalTaxable"
+            id="field_totalTaxable"
+            data-cy="totalTaxable"
+            formControlName="totalTaxable"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_totalTax">Total Tax</label>
+          <input type="number" class="form-control" name="totalTax" id="field_totalTax" data-cy="totalTax" formControlName="totalTax" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_totalNet">Total Net</label>
+          <input type="number" class="form-control" name="totalNet" id="field_totalNet" data-cy="totalNet" formControlName="totalNet" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_totalNetDevise">Total Net Devise</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalNetDevise"
+            id="field_totalNetDevise"
+            data-cy="totalNetDevise"
+            formControlName="totalNetDevise"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_tauxChange">Taux Change</label>
+          <input
+            type="number"
+            class="form-control"
+            name="tauxChange"
+            id="field_tauxChange"
+            data-cy="tauxChange"
+            formControlName="tauxChange"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_calculBy">Calcul By</label>
+          <input type="text" class="form-control" name="calculBy" id="field_calculBy" data-cy="calculBy" formControlName="calculBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_effectBy">Effect By</label>
+          <input type="text" class="form-control" name="effectBy" id="field_effectBy" data-cy="effectBy" formControlName="effectBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateSituation">Date Situation</label>
+          <div class="input-group">
+            <input
+              id="field_dateSituation"
+              data-cy="dateSituation"
+              type="text"
+              class="form-control"
+              name="dateSituation"
+              ngbDatepicker
+              #dateSituationDp="ngbDatepicker"
+              formControlName="dateSituation"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateSituationDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateop">Dateop</label>
+          <div class="d-flex">
+            <input
+              id="field_dateop"
+              data-cy="dateop"
+              type="datetime-local"
+              class="form-control"
+              name="dateop"
+              formControlName="dateop"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_modifiedBy">Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="modifiedBy"
+            id="field_modifiedBy"
+            data-cy="modifiedBy"
+            formControlName="modifiedBy"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_op">Op</label>
+          <input type="text" class="form-control" name="op" id="field_op" data-cy="op" formControlName="op" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_util">Util</label>
+          <input type="text" class="form-control" name="util" id="field_util" data-cy="util" formControlName="util" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_modifiedDate">Modified Date</label>
+          <div class="d-flex">
+            <input
+              id="field_modifiedDate"
+              data-cy="modifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="modifiedDate"
+              formControlName="modifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_employe">Employe</label>
+          <select class="form-control" id="field_employe" data-cy="employe" name="employe" formControlName="employe">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="employeOption.id === editForm.get('employe')!.value?.id ? editForm.get('employe')!.value : employeOption"
+              *ngFor="let employeOption of employesSharedCollection; trackBy: trackEmployeById"
+            >
+              {{ employeOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_devise">Devise</label>
+          <select class="form-control" id="field_devise" data-cy="devise" name="devise" formControlName="devise">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="deviseOption.id === editForm.get('devise')!.value?.id ? editForm.get('devise')!.value : deviseOption"
+              *ngFor="let deviseOption of devisesSharedCollection; trackBy: trackDeviseById"
+            >
+              {{ deviseOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_mvt">Mvt</label>
+          <select class="form-control" id="field_mvt" data-cy="mvt" name="mvt" formControlName="mvt">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="mouvementPaieOption.id === editForm.get('mvt')!.value?.id ? editForm.get('mvt')!.value : mouvementPaieOption"
+              *ngFor="let mouvementPaieOption of mouvementPaiesSharedCollection; trackBy: trackMouvementPaieById"
+            >
+              {{ mouvementPaieOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_situation">Situation</label>
+          <select class="form-control" id="field_situation" data-cy="situation" name="situation" formControlName="situation">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="situationOption.id === editForm.get('situation')!.value?.id ? editForm.get('situation')!.value : situationOption"
+              *ngFor="let situationOption of situationsSharedCollection; trackBy: trackSituationById"
+            >
+              {{ situationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

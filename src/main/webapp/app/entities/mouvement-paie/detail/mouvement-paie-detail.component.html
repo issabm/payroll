@@ -1,0 +1,152 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mouvementPaie">
+      <h2 data-cy="mouvementPaieDetailsHeading"><span>Mouvement Paie</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.code }}</span>
+        </dd>
+        <dt><span>Lib</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.lib }}</span>
+        </dd>
+        <dt><span>Annee</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.annee }}</span>
+        </dd>
+        <dt><span>Mois</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.mois }}</span>
+        </dd>
+        <dt><span>Date Calcul</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.dateCalcul | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Valid</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.dateValid | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Payroll</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.datePayroll | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Total Cotis</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.totalCotis }}</span>
+        </dd>
+        <dt><span>Total Retenue</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.totalRetenue }}</span>
+        </dd>
+        <dt><span>Total Taxable</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.totalTaxable }}</span>
+        </dd>
+        <dt><span>Total Tax</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.totalTax }}</span>
+        </dd>
+        <dt><span>Total Net</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.totalNet }}</span>
+        </dd>
+        <dt><span>Total Net Devise</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.totalNetDevise }}</span>
+        </dd>
+        <dt><span>Taux Change</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.tauxChange }}</span>
+        </dd>
+        <dt><span>Calcul By</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.calculBy }}</span>
+        </dd>
+        <dt><span>Effect By</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.effectBy }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.createdBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.op }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.util }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ mouvementPaie.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Situation</span></dt>
+        <dd>
+          <div *ngIf="mouvementPaie.situation">
+            <a [routerLink]="['/situation', mouvementPaie.situation?.id, 'view']">{{ mouvementPaie.situation?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Groupe</span></dt>
+        <dd>
+          <div *ngIf="mouvementPaie.groupe">
+            <a [routerLink]="['/groupe', mouvementPaie.groupe?.id, 'view']">{{ mouvementPaie.groupe?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Entreprise</span></dt>
+        <dd>
+          <div *ngIf="mouvementPaie.entreprise">
+            <a [routerLink]="['/entreprise', mouvementPaie.entreprise?.id, 'view']">{{ mouvementPaie.entreprise?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Affiliation</span></dt>
+        <dd>
+          <div *ngIf="mouvementPaie.affiliation">
+            <a [routerLink]="['/affiliation', mouvementPaie.affiliation?.id, 'view']">{{ mouvementPaie.affiliation?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mouvement-paie', mouvementPaie.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

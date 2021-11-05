@@ -1,0 +1,71 @@
+{
+  "name": "RebriqueContrat",
+  "fields": [
+    {
+      "fieldName": "util",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateSituation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateop",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "op",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "rebrique",
+      "otherEntityRelationshipName": "rebriqueContrat",
+      "relationshipName": "rebrqiue"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "sousTypeContrat",
+      "otherEntityRelationshipName": "rebriqueContrat",
+      "relationshipName": "sousTypeContrat"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "typeContrat",
+      "otherEntityRelationshipName": "rebriqueContrat",
+      "relationshipName": "typeContrat"
+    }
+  ],
+  "entityTableName": "ref_reb_contrat",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211105131128"
+}

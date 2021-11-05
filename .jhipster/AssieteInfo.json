@@ -1,0 +1,79 @@
+{
+  "name": "AssieteInfo",
+  "fields": [
+    {
+      "fieldName": "priorite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "val",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "util",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateSituation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateop",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "op",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "modifiedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "rebrique",
+      "otherEntityRelationshipName": "assieteInfo",
+      "relationshipName": "rebrique"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "assiete",
+      "otherEntityRelationshipName": "assieteInfo",
+      "relationshipName": "assiete"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "modeCalcul",
+      "otherEntityRelationshipName": "assieteInfo",
+      "relationshipName": "modeCal"
+    }
+  ],
+  "entityTableName": "pr_assiet_detai",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211105131129"
+}

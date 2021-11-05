@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matricePaieEmp">
+      <h2 data-cy="matricePaieEmpDetailsHeading"><span>Matrice Paie Emp</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.id }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ matricePaieEmp.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Matrice Paie</span></dt>
+        <dd>
+          <div *ngIf="matricePaieEmp.matricePaie">
+            <a [routerLink]="['/matrice-paie', matricePaieEmp.matricePaie?.id, 'view']">{{ matricePaieEmp.matricePaie?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Employe</span></dt>
+        <dd>
+          <div *ngIf="matricePaieEmp.employe">
+            <a [routerLink]="['/employe', matricePaieEmp.employe?.id, 'view']">{{ matricePaieEmp.employe?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Situation</span></dt>
+        <dd>
+          <div *ngIf="matricePaieEmp.situation">
+            <a [routerLink]="['/situation', matricePaieEmp.situation?.id, 'view']">{{ matricePaieEmp.situation?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/matrice-paie-emp', matricePaieEmp.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

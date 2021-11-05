@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity MouvementPaie.
+    -->
+    <changeSet id="20211105131139-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="situation_id"
+                                 baseTableName="pr_mvt_paie"
+                                 constraintName="fk_pr_mvt_paie__situation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_situation"/>
+
+        <addForeignKeyConstraint baseColumnNames="groupe_id"
+                                 baseTableName="pr_mvt_paie"
+                                 constraintName="fk_pr_mvt_paie__groupe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rh_groupe"/>
+
+        <addForeignKeyConstraint baseColumnNames="entreprise_id"
+                                 baseTableName="pr_mvt_paie"
+                                 constraintName="fk_pr_mvt_paie__entreprise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rh_entreprise"/>
+
+        <addForeignKeyConstraint baseColumnNames="affiliation_id"
+                                 baseTableName="pr_mvt_paie"
+                                 constraintName="fk_pr_mvt_paie__affiliation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rh_affiliation"/>
+    </changeSet>
+</databaseChangeLog>

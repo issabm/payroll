@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="assieteInfo">
+      <h2 data-cy="assieteInfoDetailsHeading"><span>Assiete Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ assieteInfo.id }}</span>
+        </dd>
+        <dt><span>Priorite</span></dt>
+        <dd>
+          <span>{{ assieteInfo.priorite }}</span>
+        </dd>
+        <dt><span>Val</span></dt>
+        <dd>
+          <span>{{ assieteInfo.val }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ assieteInfo.util }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ assieteInfo.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ assieteInfo.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ assieteInfo.modifiedBy }}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+          <span>{{ assieteInfo.createdBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ assieteInfo.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ assieteInfo.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ assieteInfo.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ assieteInfo.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Rebrique</span></dt>
+        <dd>
+          <div *ngIf="assieteInfo.rebrique">
+            <a [routerLink]="['/rebrique', assieteInfo.rebrique?.id, 'view']">{{ assieteInfo.rebrique?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Assiete</span></dt>
+        <dd>
+          <div *ngIf="assieteInfo.assiete">
+            <a [routerLink]="['/assiete', assieteInfo.assiete?.id, 'view']">{{ assieteInfo.assiete?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Mode Cal</span></dt>
+        <dd>
+          <div *ngIf="assieteInfo.modeCal">
+            <a [routerLink]="['/mode-calcul', assieteInfo.modeCal?.id, 'view']">{{ assieteInfo.modeCal?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/assiete-info', assieteInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,209 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-rebrique-heading" data-cy="RebriqueCreateUpdateHeading">Create or edit a Rebrique</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_priorite">Priorite</label>
+          <input type="number" class="form-control" name="priorite" id="field_priorite" data-cy="priorite" formControlName="priorite" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_libAr">Lib Ar</label>
+          <input type="text" class="form-control" name="libAr" id="field_libAr" data-cy="libAr" formControlName="libAr" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_libEn">Lib En</label>
+          <input type="text" class="form-control" name="libEn" id="field_libEn" data-cy="libEn" formControlName="libEn" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_inTax">In Tax</label>
+          <input type="checkbox" class="form-check" name="inTax" id="field_inTax" data-cy="inTax" formControlName="inTax" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_inSocial">In Social</label>
+          <input type="checkbox" class="form-check" name="inSocial" id="field_inSocial" data-cy="inSocial" formControlName="inSocial" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_inBp">In Bp</label>
+          <input type="checkbox" class="form-check" name="inBp" id="field_inBp" data-cy="inBp" formControlName="inBp" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_val">Val</label>
+          <input type="number" class="form-control" name="val" id="field_val" data-cy="val" formControlName="val" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateSituation">Date Situation</label>
+          <div class="input-group">
+            <input
+              id="field_dateSituation"
+              data-cy="dateSituation"
+              type="text"
+              class="form-control"
+              name="dateSituation"
+              ngbDatepicker
+              #dateSituationDp="ngbDatepicker"
+              formControlName="dateSituation"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateSituationDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dateop">Dateop</label>
+          <div class="d-flex">
+            <input
+              id="field_dateop"
+              data-cy="dateop"
+              type="datetime-local"
+              class="form-control"
+              name="dateop"
+              formControlName="dateop"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_modifiedBy">Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="modifiedBy"
+            id="field_modifiedBy"
+            data-cy="modifiedBy"
+            formControlName="modifiedBy"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_util">Util</label>
+          <input type="text" class="form-control" name="util" id="field_util" data-cy="util" formControlName="util" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_op">Op</label>
+          <input type="text" class="form-control" name="op" id="field_op" data-cy="op" formControlName="op" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_modifiedDate">Modified Date</label>
+          <div class="d-flex">
+            <input
+              id="field_modifiedDate"
+              data-cy="modifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="modifiedDate"
+              formControlName="modifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_sens">Sens</label>
+          <select class="form-control" id="field_sens" data-cy="sens" name="sens" formControlName="sens">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="sensOption.id === editForm.get('sens')!.value?.id ? editForm.get('sens')!.value : sensOption"
+              *ngFor="let sensOption of sensSharedCollection; trackBy: trackSensById"
+            >
+              {{ sensOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_concerne">Concerne</label>
+          <select class="form-control" id="field_concerne" data-cy="concerne" name="concerne" formControlName="concerne">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="concerneOption.id === editForm.get('concerne')!.value?.id ? editForm.get('concerne')!.value : concerneOption"
+              *ngFor="let concerneOption of concernesSharedCollection; trackBy: trackConcerneById"
+            >
+              {{ concerneOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_frequence">Frequence</label>
+          <select class="form-control" id="field_frequence" data-cy="frequence" name="frequence" formControlName="frequence">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="frequenceOption.id === editForm.get('frequence')!.value?.id ? editForm.get('frequence')!.value : frequenceOption"
+              *ngFor="let frequenceOption of frequencesSharedCollection; trackBy: trackFrequenceById"
+            >
+              {{ frequenceOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

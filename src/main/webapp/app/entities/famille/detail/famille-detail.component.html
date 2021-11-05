@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="famille">
+      <h2 data-cy="familleDetailsHeading"><span>Famille</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ famille.id }}</span>
+        </dd>
+        <dt><span>Date Situation</span></dt>
+        <dd>
+          <span>{{ famille.dateSituation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ famille.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ famille.util }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ famille.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ famille.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ famille.isDeleted }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ famille.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+          <span>{{ famille.modifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Employe</span></dt>
+        <dd>
+          <div *ngIf="famille.employe">
+            <a [routerLink]="['/employe', famille.employe?.id, 'view']">{{ famille.employe?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Situation Familiale</span></dt>
+        <dd>
+          <div *ngIf="famille.situationFamiliale">
+            <a [routerLink]="['/situation-familiale', famille.situationFamiliale?.id, 'view']">{{ famille.situationFamiliale?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Conjoint</span></dt>
+        <dd>
+          <div *ngIf="famille.conjoint">
+            <a [routerLink]="['/conjoint', famille.conjoint?.id, 'view']">{{ famille.conjoint?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/famille', famille.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity SoldeAbsenceContrat.
+    -->
+    <changeSet id="20211105131107-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="type_contrat_id"
+                                 baseTableName="ref_solde_abs"
+                                 constraintName="fk_ref_solde_abs__type_contrat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ref_type_contrat"/>
+    </changeSet>
+</databaseChangeLog>

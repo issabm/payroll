@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="conjoint">
+      <h2 data-cy="conjointDetailsHeading"><span>Conjoint</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ conjoint.id }}</span>
+        </dd>
+        <dt><span>Matricule</span></dt>
+        <dd>
+          <span>{{ conjoint.matricule }}</span>
+        </dd>
+        <dt><span>Nom Ar</span></dt>
+        <dd>
+          <span>{{ conjoint.nomAr }}</span>
+        </dd>
+        <dt><span>Prenom Ar</span></dt>
+        <dd>
+          <span>{{ conjoint.prenomAr }}</span>
+        </dd>
+        <dt><span>Nom En</span></dt>
+        <dd>
+          <span>{{ conjoint.nomEn }}</span>
+        </dd>
+        <dt><span>Prenom En</span></dt>
+        <dd>
+          <span>{{ conjoint.prenomEn }}</span>
+        </dd>
+        <dt><span>Date Naiss</span></dt>
+        <dd>
+          <span>{{ conjoint.dateNaiss | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Util</span></dt>
+        <dd>
+          <span>{{ conjoint.util }}</span>
+        </dd>
+        <dt><span>Dateop</span></dt>
+        <dd>
+          <span>{{ conjoint.dateop | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Modified By</span></dt>
+        <dd>
+          <span>{{ conjoint.modifiedBy }}</span>
+        </dd>
+        <dt><span>Op</span></dt>
+        <dd>
+          <span>{{ conjoint.op }}</span>
+        </dd>
+        <dt><span>Is Deleted</span></dt>
+        <dd>
+          <span>{{ conjoint.isDeleted }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <div *ngIf="conjoint.sexe">
+            <a [routerLink]="['/sexe', conjoint.sexe?.id, 'view']">{{ conjoint.sexe?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/conjoint', conjoint.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
